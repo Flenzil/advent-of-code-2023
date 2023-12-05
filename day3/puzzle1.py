@@ -27,6 +27,7 @@ def AdjacentSymbols(text, line, numStart, numEnd):
             if text[line + i][numStart - 1 + j] not in NONSYMBOLS:
                 return True
             j += 1
+    return False
 
 
 if __name__ == "__main__":
