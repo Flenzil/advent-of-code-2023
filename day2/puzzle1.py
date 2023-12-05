@@ -1,3 +1,8 @@
+"""
+Counts how many red, green or blue cubes are pulled from a bag. If more than 
+MAX cubes are pulled from a bag for a particular colour, that games score is 0 
+otherwise, the games score is equal to it's gameNo. Print running total.
+"""
 import re
 
 COLOURS = ["red", "green", "blue"]
@@ -12,6 +17,7 @@ def main():
             gameScore = int(gameNo)
 
             for i in line.split(";"):
+                # Multiple draws per game, seperated by ;
                 search = FindColours(i)
 
                 if any([int(search[j]) > MAX[j] for j in range(len(search))]):
@@ -22,6 +28,7 @@ def main():
 
 
 def FindColours(text):
+    # Return number of cubes pulled by colour.
     search = []
     for j in range(len(COLOURS)):
         regex = "[0-9]+(?= {})".format(COLOURS[j])

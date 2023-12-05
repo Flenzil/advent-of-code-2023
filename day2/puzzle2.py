@@ -1,3 +1,8 @@
+"""
+A number of red, green and blue cubes are drawn from a bag. Given the amount
+shown, what is the minimum amount of cubes of each colour that could be in 
+the bag. Multiply numbers together and print total. 
+"""
 import re
 
 COLOURS = ["red", "green", "blue"]
@@ -8,8 +13,6 @@ def main():
     totalPower = 0
     with open("input.txt") as f:
         for line in f:
-            gameNo = re.findall(r"(?<=Game\s)[0-9]+", line)[0]
-
             colourCount = [[] for i in range(len(COLOURS))]
             for i in line.split(";"):
                 search = FindColours(i)
