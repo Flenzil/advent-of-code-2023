@@ -16,43 +16,17 @@ def main():
     for line in range(len(text)):
         for search in p.finditer(text[line]):
             if AdjacentSymbols(text, line, search.start(), search.end()):
-                print(search.group())
                 total += int(search.group())
     print(total)
 
 
 def AdjacentSymbols(text, line, numStart, numEnd):
-    # Checks if any symbols are in the surrounding spaces about text.
-
-    # Checks for symbols before number.
-    if numStart != 0:
-        if text[line][numStart - 1] not in NONSYMBOLS:
-            return True
-
-    # Check for symbols after number.
-    if numEnd != len(text[line]) - 1:
-        if text[line][numEnd] not in NONSYMBOLS:
-            return True
-
-    # Checks for symbols on line above.
-    if line != 0:
-        for i in range(numEnd - numStart + 2):
-            try:
-                if text[line - 1][numStart - 1 + i] not in NONSYMBOLS:
-                    return True
-            except IndexError:
-                continue
-
-    # Checks for symbols on line below.
-    if line != len(text):
-        for i in range(numEnd - numStart + 2):
-            try:
-                if text[line + 1][numStart - 1 + i] not in NONSYMBOLS:
-                    return True
-            except IndexError:
-                continue
-
-    return False
+    for i in range(-1, 2):
+        j = 0
+        while j < numEnd - numStart + 2:
+            if text[line + i][numStart - 1 + j] not in NONSYMBOLS:
+                return True
+            j += 1
 
 
 if __name__ == "__main__":

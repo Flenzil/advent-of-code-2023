@@ -25,49 +25,17 @@ def main():
 
 
 def AdjacentNums(text, line, char):
-    # Returns numbers around char.
-
-    # Check for numbers before char.
+    # Search the 3x3 grid of characters centred on the * character for numbers.
     adjacentNums = []
-    if char != 0:
-        if text[line][char - 1] in NUMBERS:
-            num, _ = SearchForNums(text, line, char - 1)
-            adjacentNums.append(num)
-
-    # Check for numbers after char.
-    if char != len(text[line]) - 1:
-        if text[line][char + 1] in NUMBERS:
-            num, _ = SearchForNums(text, line, char + 1)
-            adjacentNums.append(num)
-
-    # Check for numbers on line above.
-    if line != 0:
-        i = 0
-        while i < 3:
-            try:
-                if text[line - 1][char - 1 + i] in NUMBERS:
-                    num, offset = SearchForNums(text, line - 1, char - 1 + i)
-                    adjacentNums.append(num)
-                    i += offset
-                else:
-                    i += 1
-            except IndexError:
-                continue
-
-    # Check for numbers on line below.
-    if line != len(text):
-        i = 0
-        while i < 3:
-            try:
-                if text[line + 1][char - 1 + i] in NUMBERS:
-                    num, offset = SearchForNums(text, line + 1, char - 1 + i)
-                    adjacentNums.append(num)
-                    i += offset
-                else:
-                    i += 1
-            except IndexError:
-                continue
-
+    for i in range(-1, 2):
+        j = 0
+        while j < 3:
+            if text[line + i][char - 1 + j] in NUMBERS:
+                num, offset = SearchForNums(text, line + i, char - 1 + j)
+                adjacentNums.append(num)
+                j += offset
+            else:
+                j += 1
     return adjacentNums
 
 
