@@ -1,3 +1,8 @@
+"""
+Finds first and last numbers in each line of file including those spelled out,
+forms a two digit number from them and adds a running total
+"""
+
 import re
 from word2number import w2n
 

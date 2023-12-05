@@ -1,3 +1,7 @@
+"""
+Finds first and last numbers in each line of file, forms a two digit
+number from them and adds a running total
+"""
 import re
 
 linetotals = []
