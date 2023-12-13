@@ -1,3 +1,8 @@
+"""
+Checks if numbers on left of | in input.txt are in the winning numbers on
+the right of |. For n winning numbers, we duplicate the next n cards. This
+prints the total amount of cards at the of this process.
+"""
 import re
 
 
